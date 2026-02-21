@@ -1,0 +1,385 @@
+/* ==========================================
+   COFFEE SHOP WEBSITE STYLES
+   ========================================== 
+   All CSS classes are ready to use!
+   Just reference these class names in your HTML
+   
+   NO CHANGES NEEDED - This file is complete!
+*/
+
+/* ===== CSS CUSTOM PROPERTIES ===== */
+:root {
+    --primary-color: #6F4E37;      /* Coffee brown */
+    --secondary-color: #D4A574;    /* Light tan */
+    --accent-color: #2C1810;       /* Dark brown */
+    --text-color: #333;            /* Dark gray */
+    --light-bg: #F9F6F2;          /* Light beige */
+    --white: #FFFFFF;
+}
+
+/* ===== RESET & BASE STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--white);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== NAVIGATION ===== */
+/* Use these classes: nav, .nav-container, .logo, .nav-links */
+nav {
+    background-color: var(--primary-color);
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: var(--white);
+    font-size: 1.5rem;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--secondary-color);
+}
+
+/* ===== HERO SECTION ===== */
+/* Use these classes: .hero, .hero-content, .tagline */
+.hero {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: var(--white);
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.tagline {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+/* ===== SECTIONS ===== */
+section {
+    padding: 60px 20px;
+}
+
+.about {
+    background-color: var(--light-bg);
+}
+
+.about h2,
+.featured h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+.about p {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* ===== FEATURES GRID ===== */
+/* Use these classes: .features-grid, .feature-card */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+/* ===== PRODUCTS PAGE ===== */
+/* Use these classes: .products-section, .filter-buttons, .filter-btn, .product-grid */
+.products-section {
+    min-height: 70vh;
+}
+
+.products-section h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 0.7rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--white);
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+/* ===== PRODUCT CARDS ===== */
+/* IMPORTANT: Use these classes in your JavaScript!
+   - .product-card: Main card wrapper
+   - .product-info: Container for description and ingredients
+   - .section-label: Bold labels like "Description:" and "Ingredients:"
+   - .section-content: The actual text content
+*/
+.product-card {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-card h3 {
+    padding: 1rem;
+    color: var(--primary-color);
+    font-size: 1.3rem;
+}
+
+.product-card p {
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.product-info {
+    padding: 0 1rem 1rem 1rem;
+}
+
+.section-label {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    color: var(--primary-color);
+}
+
+.section-content {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+/* ===== CONTACT PAGE ===== */
+/* Use these classes: .contact-section, .contact-content, .contact-info, .info-item */
+.contact-section h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+.contact-content {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.contact-info {
+    background: var(--light-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+.contact-info h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.info-item {
+    margin-bottom: 2rem;
+}
+
+.info-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.info-item p {
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+/* These styles automatically adjust for mobile devices */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .tagline {
+        font-size: 1.1rem;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .filter-buttons {
+        gap: 0.5rem;
+    }
+
+    .filter-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================
+   QUICK REFERENCE FOR STUDENTS
+   ========================================== 
+   
+   PRODUCTS PAGE (product.js):
+   When creating coffee cards, use this HTML structure:
+   
+   <div class="product-card">
+       <img src="..." alt="...">
+       <h3>Coffee Name</h3>
+       <div class="product-info">
+           <div class="description-section">
+               <p class="section-label">Description:</p>
+               <p class="section-content">Text here...</p>
+           </div>
+           <div class="ingredients-section">
+               <p class="section-label">Ingredients:</p>
+               <p class="section-content">Ingredient list...</p>
+           </div>
+       </div>
+   </div>
+   
+   CONTACT PAGE (contact.html):
+   Use these classes for contact information:
+   
+   <div class="contact-content">
+       <div class="contact-info">
+           <h2>Visit Us</h2>
+           <div class="info-item">
+               <h3>📍 Address</h3>
+               <p>Your address here</p>
+           </div>
+       </div>
+   </div>
+   
+   All styling is complete - just use the class names!
+*/

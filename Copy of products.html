@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products - Brew Haven Coffee</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <!-- NOTE: Make sure this matches your company name from index.html -->
+            <h1 class="logo">[INSERT COMPANY NAME]</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html" class="active">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <section class="products-section">
+            <div class="container">
+                <h1>Our Products</h1>
+                
+                <!-- Filter Buttons (Already Complete!) -->
+                <!-- These buttons filter drinks by category -->
+                <!-- The JavaScript will handle the click events -->
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="all">All Drinks</button>
+                    <button class="filter-btn" data-category="espresso">Espresso</button>
+                    <button class="filter-btn" data-category="coffee">Coffee</button>
+                    <button class="filter-btn" data-category="other">Other</button>
+                </div>
+
+                <!-- Product Grid -->
+                <!-- Your JavaScript will add coffee cards here dynamically -->
+                <!-- The CSS classes are already set up for you! -->
+                <div id="product-grid" class="product-grid">
+                    <!-- Coffee cards will appear here after you complete product.js -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 [INSERT COMPANY NAME]. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Link to JavaScript file -->
+    <!-- This is where all the magic happens! -->
+    <script src="product.js"></script>
+    
+    <!-- ==========================================
+         WHAT YOUR JAVASCRIPT NEEDS TO DO
+         ========================================== -->
+    <!-- 
+    In product.js, you'll need to:
+    1. Fetch coffee data from an API
+    2. Transform the data to match our format
+    3. Create HTML cards for each coffee
+    4. Display the cards in the grid above
+    5. Make the filter buttons work
+    
+    CSS Classes Available (already styled):
+    - .product-card: Main card container
+    - .product-info: Info section inside card
+    - .section-label: Bold labels (Description, Ingredients)
+    - .section-content: The actual content text
+    
+    The grid will automatically arrange your cards!
+    -->
+</body>
+</html>
