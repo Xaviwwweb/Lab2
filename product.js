@@ -1,10 +1,41 @@
 // ==========================================
 // COFFEE SHOP PRODUCTS PAGE - STUDENT LAB
 // ==========================================
-// Your mission: Fetch coffee data from an API and display it as cards
 
 // This array will store all our coffee data
 let allCoffees = [];
+
+// BACKUP DATA: Used if the API is down
+const backupMenu = [
+    {
+        id: 1,
+        title: "Classic Black Coffee",
+        description: "A smooth, medium-roast blend perfect for starting your morning.",
+        ingredients: ["Coffee Bean Blend", "Hot Water"],
+        image: "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?q=80&w=500"
+    },
+    {
+        id: 2,
+        title: "Rich Espresso",
+        description: "A double shot of our premium dark roast with a thick, golden crema.",
+        ingredients: ["Fine Ground Espresso"],
+        image: "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?q=80&w=500"
+    },
+    {
+        id: 3,
+        title: "Vanilla Latte",
+        description: "Creamy steamed milk and espresso with a hint of Madagascar vanilla.",
+        ingredients: ["Espresso", "Steamed Milk", "Vanilla Syrup"],
+        image: "https://images.unsplash.com/photo-1595434066389-99c30150914c?q=80&w=500"
+    },
+    {
+        id: 4,
+        title: "Caramel Macchiato",
+        description: "Layered espresso and milk topped with a buttery caramel drizzle.",
+        ingredients: ["Espresso", "Milk", "Caramel Sauce"],
+        image: "https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=500"
+    }
+];
 
 // ==========================================
 // TODO #1: FETCH DATA FROM API
@@ -12,68 +43,64 @@ let allCoffees = [];
 async function fetchCoffees() {
     try {
         // STEP 1: Fetch data from the API
-        // API URL: 'https://api.sampleapis.com/coffee/hot'
-        // HINT: const response = await fetch('URL_HERE');
-        const response = // YOUR CODE HERE
+        const response = await fetch('https://api.sampleapis.com/coffee/hot');
         
+        // Check if API response is actually OK
+        if(!response.ok) throw new Error("API Network error");
+
         // STEP 2: Convert response to JSON
-        // HINT: const data = await response.json();
-        const data = // YOUR CODE HERE
+        const data = await response.json();
         
         // ==========================================
         // TODO #2: TRANSFORM THE DATA
         // ==========================================
-        // The API returns coffee objects with these properties:
-        // - id, title, description, ingredients, image
-        // 
-        // We need to transform them to:
-        // - id, name, description, category, ingredients, image_url
-        //
-        // Use .map() to transform each coffee object:
-        // HINT: allCoffees = data.map(coffee => ({ ... }));
-        
         allCoffees = data.map(coffee => ({
             id: coffee.id,
-            name: // YOUR CODE HERE (use coffee.title)
-            description: // YOUR CODE HERE
+            name: coffee.title, 
+            description: coffee.description,
             category: getCoffeeCategory(coffee.title, coffee.ingredients),
-            ingredients: // YOUR CODE HERE
-            image_url: // YOUR CODE HERE (use coffee.image)
+            ingredients: coffee.ingredients,
+            image_url: coffee.image 
         }));
         
-        // Display all coffees when page loads
         displayCoffees(allCoffees);
-        console.log('Loaded coffees from API:', allCoffees.length);
+        console.log('Loaded from Live API:', allCoffees.length);
         
     } catch (error) {
-        console.error('Error fetching coffees:', error);
-        document.getElementById('product-grid').innerHTML = 
-            '<p>Sorry, unable to load products. Please try again later.</p>';
+        console.warn('API Unavailable. Loading Backup Menu instead.', error);
+        
+        // If API fails, transform our backupMenu instead
+        allCoffees = backupMenu.map(coffee => ({
+            id: coffee.id,
+            name: coffee.title,
+            description: coffee.description,
+            category: getCoffeeCategory(coffee.title, coffee.ingredients),
+            ingredients: coffee.ingredients,
+            image_url: coffee.image
+        }));
+
+        displayCoffees(allCoffees);
     }
 }
 
 // ==========================================
 // TODO #3: CATEGORIZE COFFEES
 // ==========================================
-// This function determines the category based on ingredients
 function getCoffeeCategory(title, ingredients) {
-    // Convert ingredients array to lowercase string
     const ingredientsStr = Array.isArray(ingredients) 
         ? ingredients.join(' ').toLowerCase() 
         : '';
     
     // Check if it contains 'espresso'
-    // HINT: if (ingredientsStr.includes('espresso')) { return 'espresso'; }
-    if (/* YOUR CODE HERE */) {
+    if (ingredientsStr.includes('espresso') || title.toLowerCase().includes('espresso')) {
         return 'espresso';
     }
     
     // Check if it contains 'coffee'
-    if (/* YOUR CODE HERE */) {
+    if (ingredientsStr.includes('coffee') || title.toLowerCase().includes('black')) {
         return 'coffee';
     }
     
-    // Everything else (tea, hot chocolate, etc.)
     return 'other';
 }
 
@@ -82,20 +109,21 @@ function getCoffeeCategory(title, ingredients) {
 // ==========================================
 function displayCoffees(coffeesToShow) {
     const productGrid = document.getElementById('product-grid');
-    productGrid.innerHTML = ''; // Clear existing cards
+    if(!productGrid) return;
+
+    productGrid.innerHTML = ''; 
     
-    // Loop through each coffee
     coffeesToShow.forEach(coffee => {
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
         
         productCard.innerHTML = `
-            <img src="YOUR CODE HERE CALL THE COFFEE IMAGE" alt="${coffee.name}">
-            <h3> YOUR CODE HERE CALL THE COFFEE NAME </h3>
+            <img src="${coffee.image_url}" alt="${coffee.name}">
+            <h3>${coffee.name}</h3>
             <div class="product-info">
                 <div class="description-section">
                     <p class="section-label">Description:</p>
-                    <p class="section-content"> YOUR CODE HERE ADD THE DESCRIPTION INFORMATION </p>
+                    <p class="section-content">${coffee.description}</p>
                 </div>
                 <div class="ingredients-section">
                     <p class="section-label">Ingredients:</p>
@@ -104,9 +132,8 @@ function displayCoffees(coffeesToShow) {
             </div>
         `;
         
-        // After formatting and adding the content to the card push it to the grid
-        // HINT: productGrid.appendChild(productCard);
-        // YOUR CODE HERE
+        // Push the card to the grid
+        productGrid.appendChild(productCard);
     });
 }
 
@@ -115,19 +142,15 @@ function displayCoffees(coffeesToShow) {
 // ==========================================
 function filterByCategory(category) {
     if (category === 'all') {
-        // Display all coffees
-        // HINT: displayCoffees(allCoffees);
-        // YOUR CODE HERE
+        displayCoffees(allCoffees);
     } else {
-        // Filter coffees where category matches
-        // HINT: const filtered = allCoffees.filter(c => c.category === category);
-        const filtered = // YOUR CODE HERE
+        const filtered = allCoffees.filter(c => c.category === category);
         displayCoffees(filtered);
     }
 }
 
 // ==========================================
-// EVENT LISTENERS (Complete - No changes needed)
+// EVENT LISTENERS
 // ==========================================
 document.addEventListener('DOMContentLoaded', function() {
     fetchCoffees();
@@ -142,11 +165,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-// ==========================================
-// TESTING CHECKLIST
-// ==========================================
-// ✓ Coffee cards appear on page
-// ✓ Each card shows: image, name, description, ingredients
-// ✓ Filter buttons work correctly
-// ✓ No errors in console (F12)
