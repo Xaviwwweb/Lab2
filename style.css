@@ -9,9 +9,9 @@
 
 /* ===== CSS CUSTOM PROPERTIES ===== */
 :root {
-    --primary-color: #6F4E37;      /* Coffee brown */
-    --secondary-color: #D4A574;    /* Light tan */
-    --accent-color: #2C1810;       /* Dark brown */
+    --primary-color: #a17ac0;      /* Coffee brown */
+    --secondary-color: #78bca9;    /* Light tan */
+    --accent-color: #6bc4a8;       /* Dark brown */
     --text-color: #333;            /* Dark gray */
     --light-bg: #F9F6F2;          /* Light beige */
     --white: #FFFFFF;
